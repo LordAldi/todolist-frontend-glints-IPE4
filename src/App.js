@@ -2,16 +2,14 @@ import { useState } from 'react';
 import './App.css';
 
 import SideMenu from './components/SideMenu';
-// import Dashboard from './pages/Dashboard';
-// import Users from './pages/Users';
+import Dashboard from './pages/Dashboard';
+import Users from './pages/Users';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Users from './pages/Users';
 
 
 const Home = () => {
