@@ -30,17 +30,48 @@
                         font-size: 15px;
                     .side-menu .top-section .logo .user-info p{
                         font-size: 13px;
-        .side-menu .top-section .toggle-menu-btn{
-        color: #0080ff;
-        font-size: 20px;
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        cursor: pointer;                
-        .side-menu.inactive .top-section .toggle-menu-btn {
-        right: -50px;  
-            
+                    .side-menu .top-section .toggle-menu-btn{
+                        color: #0080ff;
+                        font-size: 20px;
+                        position: absolute;
+                        top: 50%;
+                        right: 0;
+                        transform: translateY(-50%);
+                        cursor: pointer;                
+                    .side-menu.inactive .top-section .toggle-menu-btn {
+                    right: -50px;  
+    .side-menu .main-menu{
+        margin: 5px;
+        .side-menu .main-menu .menu-item{
+            color: White;
+            margin-left: -5px;
+            text-decoration: none;
+            font-size: 15px;
+            display: block;
+            font-weight: 600;
+            cursor: pointer;
+            .side-menu .main-menu .menu-item.active{
+                background-color: blueviolet;
+                border-radius: 5px;
+                .side-menu .main-menu .menu-item .menu-icon{
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    font-size: 20px;
+                    line-height: 40px;
+                    text-align: center;
+                    cursor: pointer;
+                .side-menu .main-menu .menu-item span{
+                    position: absolute;
+                    display: inline-block;
+                    line-height: 40px;
+                    opacity: 1;
+                    transition: opacity .2s ease-in;
+                    .side-menu.inactive .main-menu .menu-item span{
+                        opacity: 0;
+                        width: 0;
+                        height: 0;
+                        overflow: hidden;    
         }            
        }
       }    
@@ -50,46 +81,16 @@
   }
  }
 }
-    .side-menu .main-menu{
-        margin: 5px;
-        .side-menu .main-menu .menu-item{
-        color: White;
-        margin-left: -5px;
-        text-decoration: none;
-        font-size: 15px;
-        display: block;
-        font-weight: 600;
-        cursor: pointer;
-        .side-menu .main-menu .menu-item.active{
-            background-color: blueviolet;
-            border-radius: 5px;
-            .side-menu .main-menu .menu-item .menu-icon{
-                display: inline-block;
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-                line-height: 40px;
-                text-align: center;
-                cursor: pointer;
-            .side-menu .main-menu .menu-item span{
-            position: absolute;
-            display: inline-block;
-            line-height: 40px;
-            opacity: 1;
-            transition: opacity .2s ease-in;
-            .side-menu.inactive .main-menu .menu-item span{
-            opacity: 0;
-            width: 0;
-            height: 0;
-            overflow: hidden;
+}
+}
+}   
             }    
            }   
           }    
          }
         }
-       }
-      }
-}
+       
+
 .divider{
     width: 100%;
     height: 1px;
