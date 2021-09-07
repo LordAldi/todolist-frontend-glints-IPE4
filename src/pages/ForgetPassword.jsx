@@ -3,6 +3,7 @@ import React from "react";
 import AuthLeft from "../components/AuthLeft";
 import TextField from "../components/TextField";
 import ForgetImage from "../assets/image/forgot.png";
+import * as yup from "yup";
 
 const ForgetPasswordForm = ({ onSubmit }) => {
   return (
@@ -24,6 +25,10 @@ const ForgetPasswordForm = ({ onSubmit }) => {
 const initialValues = {
   email: "",
 };
+
+const validationSchema = yup.object().shape({
+  email: yup.string().email("must a valid email").required("Email is Required"),
+});
 const ForgetPassword = () => {
   const onSubmit = (values) => {
     console.log(values);
@@ -43,7 +48,11 @@ const ForgetPassword = () => {
             <img src={ForgetImage} alt="forget" />
           </div>
 
-          <Formik initialValues={initialValues} onSubmit={onSubmit}>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+          >
             {({ handleSubmit }) => (
               <ForgetPasswordForm onSubmit={handleSubmit} />
             )}
