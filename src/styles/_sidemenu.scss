@@ -36,26 +36,18 @@
                     font-size: 13px;
                 }
             }
+        .toggle-menu-btn{
+                color: #0080ff;
+                font-size: 20px;
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }    
         }
     }
 }
-
-
-
-.side-menu 
-
-.side-menu .top-section 
-
-
-.side-menu .top-section .logo 
-
-.side-menu .top-section .logo 
-
-.side-menu .top-section .logo .user-info 
-
-.side-menu .top-section .logo .user-info 
-
-.side-menu
 
 .side-menu .top-section .toggle-menu-btn{
     color: #0080ff;
