@@ -32,8 +32,6 @@ function App() {
       }} 
       />
       <div className={`container ${inactive ? "inactive" : "" }`}>
-      
-      
       <Switch>
         <Route exact path={'/'}>
           <Home/>
@@ -48,6 +46,7 @@ function App() {
       </div>
 
     </Router>
+    
   </div>
   )
 }

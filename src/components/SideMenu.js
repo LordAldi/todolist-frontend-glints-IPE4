@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import users from '../Assets/logo/users.png'
 import MenuItem from './MenuItem';
 
 
@@ -26,7 +25,7 @@ const SideMenu = (props) => {
         <div className="top-section">
             <div className="logo">
             <div className="avatar">
-                <img src={users} alt="users.png" />
+                <img  variant="top" src="https://avatars.dicebear.com/api/gridy/laksono.svg" />
                 <div className="user-info">
                 <h5>@Jember08</h5>
                 <p>admin</p>

@@ -94,9 +94,7 @@ body{
 
 .side-menu .main-menu .menu-item.active{
     background-color: blueviolet;
-    
     border-radius: 5px;
-    /* color: aqua; */
 }
 
 .side-menu .main-menu{
