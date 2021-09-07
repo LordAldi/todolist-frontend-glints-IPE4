@@ -145,10 +145,15 @@ body{
     margin-left: 120px;
 }
 
-.card-body{
-    position: absolute;
-    width: 450px;
-    height: 200.5px;
-    left: 400px;
-    top: 260px;
+
+.group-info .card .card-img-top{
+  width: 41px;
+  height: 48px;  
+}
+
+.group-info .card .card-title {
+height: 25px;
+width: 63px;
+left: 55px;
+top: 86px;
 }

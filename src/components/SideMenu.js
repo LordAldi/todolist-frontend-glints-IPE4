@@ -54,22 +54,6 @@ const SideMenu = (props) => {
                  }}
                  />
                 ))}
-                 {/* <li>
-                    <a className="menu-item">
-                    <div className="menu-icon">
-                    <i class="bi bi-laptop"></i>
-                    </div>
-                    <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a className="menu-item">
-                    <div className="menu-icon">
-                    <i class="bi bi-people"></i>
-                    </div>
-                    <span>Users</span>
-                    </a>
-                </li>     */}
             </ul>
         </div>
         
