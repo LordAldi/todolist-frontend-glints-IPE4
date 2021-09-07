@@ -8,6 +8,25 @@
     transition: width .2s ease-in;
     &.inactive {
         width: 80px;
+        .top-section .logo .user-info{
+            opacity: 0;
+        }
+        .top-section .toggle-menu-btn {
+            right: -50px;
+        }  
+
+        .top-section{
+            .logo{
+                .user-info{
+                    opacity: 0;
+                }
+                
+            }
+            .toggle-menu-btn{
+                right: -50px;
+            }
+        }
+        
     }
     .top-section{
         position: relative;
@@ -26,9 +45,7 @@
                 position: absolute;
                 opacity: 1;
                 transition: opacity .2s ease-in;
-                &.inactive .top-section .logo .user-info{
-                    opacity: 0;
-                }
+                
                 h5{
                     font-size: 15px;
                 }
@@ -36,7 +53,7 @@
                     font-size: 13px;
                 }
             }
-        .toggle-menu-btn{
+            .toggle-menu-btn{
                 color: #0080ff;
                 font-size: 20px;
                 position: absolute;
@@ -44,43 +61,53 @@
                 right: 0;
                 transform: translateY(-50%);
                 cursor: pointer;
-            }    
+            }
+          
+      }
+    }
+    .main-menu{
+        margin: 5px;
+        .menu-item{
+            color: White;
+            margin-left: -5px;
+            text-decoration: none;
+            font-size: 15px;
+            display: block;
+            font-weight: 600;
+            cursor: pointer;
+            &.active{
+                background-color: blueviolet;
+                border-radius: 5px;
+            }
+            .menu-icon{
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+                line-height: 40px;
+                text-align: center;
+                cursor: pointer;
+            }
+        .span{
+            position: absolute;
+            display: inline-block;
+            line-height: 40px;
+            opacity: 1;
+            transition: opacity .2s ease-in;
+            &.inactive {
+                opacity: 0;
+                width: 0;
+                height: 0;
+                overflow: hidden;
+            }
         }
+      }
     }
 }
 
-.side-menu .top-section .toggle-menu-btn{
-    color: #0080ff;
-    font-size: 20px;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
 
-.side-menu.inactive .top-section .toggle-menu-btn {
-    right: -50px;
-}
 
-.side-menu .main-menu .menu-item{
-    color: White;
-    margin-left: -5px;
-    text-decoration: none;
-    font-size: 15px;
-    display: block;
-    font-weight: 600;
-    cursor: pointer;
-}
 
-.side-menu .main-menu .menu-item.active{
-    background-color: blueviolet;
-    border-radius: 5px;
-}
-
-.side-menu .main-menu{
-    margin: 5px;
-}
 
 .divider{
     width: 100%;
@@ -89,50 +116,15 @@
     background-color: aqua;
 }
 
-.side-menu .main-menu .menu-item .menu-icon{
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    line-height: 40px;
-    text-align: center;
-    cursor: pointer;
-}
 
-.side-menu .main-menu .menu-item span{
-    position: absolute;
-    display: inline-block;
-    line-height: 40px;
-    opacity: 1;
-    transition: opacity .2s ease-in;
-}
 
-.side-menu.inactive .main-menu .menu-item span{
-    opacity: 0;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-}
 
 .container{
     margin-left: 300px;
     transition: margin-left .2s ease-in;
     padding: 50px;
+    &.inactive{
+        margin-left: 120px;
+    }
 }
 
-.container.inactive{
-    margin-left: 120px;
-}
-
-
-.group-info .card .card-img-top{
-  width: 41px;
-  height: 48px;  
-}
-
-.group-info .card .card-title {
-height: 25px;
-width: 63px;
-left: 55px;
-top: 86px;
-}
