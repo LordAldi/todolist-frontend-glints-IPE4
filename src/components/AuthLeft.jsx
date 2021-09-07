@@ -15,6 +15,7 @@ const AuthLeft = ({ title, subtitle, btnText, btnPath }) => {
         </div>
       </div>
       <BackHome />
+      <Link to="/verification">go to Verification</Link>
     </div>
   );
 };

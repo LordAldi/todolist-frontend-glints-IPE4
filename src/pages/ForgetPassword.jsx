@@ -1,40 +1,30 @@
 import { Form, Formik } from "formik";
 import React from "react";
-import { Link } from "react-router-dom";
 import AuthLeft from "../components/AuthLeft";
 import TextField from "../components/TextField";
+import ForgetImage from "../assets/image/forgot.png";
 
-const LoginForm = ({ onSubmit }) => {
+const ForgetPasswordForm = ({ onSubmit }) => {
   return (
     <Form>
       <TextField
-        name="username"
-        label="Username"
-        placeholder="Username"
-        autoComplete="name"
-        type="text"
+        name="email"
+        label="Please enter your email to receive OTP"
+        autoComplete="username"
+        placeholder="example@web.com"
+        type="email"
       />
-      <TextField
-        name="password"
-        label="Password"
-        placeholder="Password"
-        autoComplete="current-password"
-        type="password"
-      />
-      <Link to="/forget-password" className="forget">
-        Forget Password?
-      </Link>
       <div className="button" onClick={onSubmit}>
-        Login
+        Send
       </div>
     </Form>
   );
 };
+
 const initialValues = {
-  username: "",
-  password: "",
+  email: "",
 };
-const Login = () => {
+const ForgetPassword = () => {
   const onSubmit = (values) => {
     console.log(values);
   };
@@ -48,9 +38,15 @@ const Login = () => {
       />
       <div className="auth-right">
         <div className="form-card">
-          <h1 className="title">Login</h1>
+          <h1 className="title">Forget Password</h1>
+          <div className="forgetImg">
+            <img src={ForgetImage} alt="forget" />
+          </div>
+
           <Formik initialValues={initialValues} onSubmit={onSubmit}>
-            {({ handleSubmit }) => <LoginForm onSubmit={handleSubmit} />}
+            {({ handleSubmit }) => (
+              <ForgetPasswordForm onSubmit={handleSubmit} />
+            )}
           </Formik>
         </div>
       </div>
@@ -58,4 +54,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgetPassword;
