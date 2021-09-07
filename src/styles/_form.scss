@@ -7,6 +7,11 @@
         font-weight: 600;
         padding: 0 0 13px 16px;
     }
+    .error-message{
+        color: #d73a4a;
+        font-size: 12px;
+        padding: 0 0 4px 16px;
+    }
     input[type="text"], input[type="email"], input[type="password"]{
         background-color: rgba(199, 214, 253, 0.4);
         border-radius: 15px;

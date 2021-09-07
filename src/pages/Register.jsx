@@ -2,6 +2,7 @@ import { Form, Formik } from "formik";
 import React from "react";
 import AuthLeft from "../components/AuthLeft";
 import TextField from "../components/TextField";
+import * as yup from "yup";
 
 const RegisterForm = ({ onSubmit }) => {
   return (
@@ -46,6 +47,27 @@ const initialValues = {
   password: "",
   confirmPassword: "",
 };
+
+const validationSchema = yup.object().shape({
+  username: yup
+    .string()
+    .min(4, "username must have at least 4 character")
+    .required(),
+  email: yup.string().email("must a valid email").required("Email is Required"),
+  password: yup
+    .string()
+    .min(8)
+    .max(16)
+    .matches(
+      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      "password must contains 8 characters,1 uppercase, 1 lowercase, 1 number, and 1 special char"
+    )
+    .required(),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
+});
+
 const Register = () => {
   const onSubmit = (values) => {
     console.log(values);
@@ -61,7 +83,11 @@ const Register = () => {
       <div className="auth-right">
         <div className="form-card">
           <h1 className="title">Create an Account</h1>
-          <Formik initialValues={initialValues} onSubmit={onSubmit}>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+          >
             {({ handleSubmit }) => <RegisterForm onSubmit={handleSubmit} />}
           </Formik>
         </div>

@@ -7,6 +7,8 @@ const TextField = ({ name, label, ...props }) => {
   return (
     <div className="text-field">
       <label htmlFor={name}>{label}</label>
+      {showError && <p className="error-message">{meta.error}</p>}
+
       <input
         name={name}
         {...props}
@@ -15,7 +17,6 @@ const TextField = ({ name, label, ...props }) => {
         value={field.value}
         {...field}
       />
-      {showError && <p>{meta.error}</p>}
     </div>
   );
 };
