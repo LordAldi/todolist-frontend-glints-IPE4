@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import BackHome from "./BackHome";
 
 const AuthLeft = ({ title, subtitle, btnText, btnPath }) => {
   return (
@@ -14,8 +13,8 @@ const AuthLeft = ({ title, subtitle, btnText, btnPath }) => {
           </Link>
         </div>
       </div>
-      <BackHome />
       <Link to="/verification">go to Verification</Link>
+      <Link to="/">go to home</Link>
     </div>
   );
 };

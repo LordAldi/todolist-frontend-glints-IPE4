@@ -45,7 +45,8 @@ export function AuthProvider({ children }) {
     formData.append("email", values.email);
     formData.append("password", values.password);
     formData.append("nama", values.username);
-    formData.append("role", "user");
+    formData.append("role", "admin");
+    console.log("register");
     try {
       const res = await axios({
         url: "https://stooping-layers.000webhostapp.com/register.php",
@@ -55,12 +56,7 @@ export function AuthProvider({ children }) {
       });
       if (res.data.status) {
         console.log("status oke");
-        setAuth({
-          email: res.data.email,
-          nama: res.data.nama,
-          role: res.data.role,
-        });
-        history.push("/");
+        history.push("/login");
       }
       console.log(res.data);
       console.log(auth);
@@ -68,13 +64,19 @@ export function AuthProvider({ children }) {
       console.log(error);
     }
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const logout = (history) => {
+    setAuth({ email: "", nama: "", role: "" });
+    history.push("/login");
+  };
   const memoedValue = useMemo(
     () => ({
       auth,
       login,
       register,
+      logout,
     }),
-    [auth, login, register]
+    [auth, login, register, logout]
   );
 
   return (

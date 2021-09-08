@@ -5,13 +5,15 @@ import {
   Redirect,
 } from "react-router-dom";
 import useAuth, { AuthProvider } from "./hooks/authContext";
+import Dashboard from "./pages/Dashboard";
+import Users from "./pages/Users";
+import "bootstrap/dist/css/bootstrap.min.css";
 import ForgetPassword from "./pages/ForgetPassword";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Verification from "./pages/Verification";
-
 import "./styles/index.scss";
+import Layout from "./components/Layout";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { auth } = useAuth();
@@ -35,19 +37,12 @@ function App() {
     <AuthProvider>
       <Router>
         <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/verification">
-            <Verification />
-          </Route>
-          <Route path="/forget-password">
-            <ForgetPassword />
-          </Route>
-          <PrivateRoute path="/" component={Home} exact />
+          <Route path="/verification" component={Verification} />
+          <Route path="/forget-password" component={ForgetPassword} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <PrivateRoute path={"/Users"} component={Layout(Users)} />
+          <PrivateRoute exact path={"/"} component={Layout(Dashboard)} />
         </Switch>
       </Router>
     </AuthProvider>
