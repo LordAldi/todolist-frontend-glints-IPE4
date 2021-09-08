@@ -1,7 +1,8 @@
 import { useField } from "formik";
 import React from "react";
+import { useEffect } from "react";
 
-const TextField = ({ name, label, ...props }) => {
+const TextField = ({ name, label, valueProps = "", ...props }) => {
   const [field, meta, helpers] = useField(name);
   const showError = meta.touched && meta.error;
   return (

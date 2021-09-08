@@ -3,10 +3,18 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
+import useModal from "../hooks/useModal";
+import Modal from "../components/Modal";
 
 const Users = (props) => {
   const [users, setUsers] = useState([]);
+  const [modalUsers, setModalUser] = useState({
+    email: "",
+    username: "",
+    role: "",
+  });
   const [loading, setLoading] = useState(true);
+  const { isVisible, toggleModal } = useModal();
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios({
@@ -21,12 +29,15 @@ const Users = (props) => {
 
     fetchUser();
   }, []);
-  console.log("loading", loading);
-  console.log("users", users);
   return (
     <div className="user">
       <div className="user-head">
         <h1>Users</h1>
+        <Modal
+          user={modalUsers}
+          isVisible={isVisible}
+          hideModal={toggleModal}
+        />
       </div>
       <div className="user-btn">
         <Button variant="primary">Add User</Button>
@@ -45,7 +56,7 @@ const Users = (props) => {
         {users &&
           users.map((user) => {
             return (
-              <div className="card">
+              <div className="card" key={user.id}>
                 <img
                   src={`https://avatars.dicebear.com/api/gridy/${user.nama}.svg`}
                   alt="Avatar"
@@ -55,7 +66,20 @@ const Users = (props) => {
                     <b>{user.nama}</b>
                   </h4>
                   <p>{user.role}</p>
-                  <Button variant="primary">Detail</Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      setModalUser({
+                        email: user.email,
+                        username: user.nama,
+                        role: user.role,
+                        id: user.id,
+                      });
+                      toggleModal();
+                    }}
+                  >
+                    Detail
+                  </Button>
                 </div>
               </div>
             );

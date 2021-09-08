@@ -69,14 +69,41 @@ export function AuthProvider({ children }) {
     setAuth({ email: "", nama: "", role: "" });
     history.push("/login");
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const updateUser = async (values, id, history) => {
+    const formData = new FormData();
+    formData.append("email", values.email);
+    formData.append("idadmin", id);
+    formData.append("nama", values.username);
+    console.log("id", id);
+    try {
+      const res = await axios({
+        url: "https://stooping-layers.000webhostapp.com/updateadmin.php",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+        method: "POST",
+      });
+      if (res.data.status) {
+        console.log("status oke");
+        history.push("/users");
+        window.location.reload();
+      }
+      console.log(res.data);
+      console.log(auth);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const memoedValue = useMemo(
     () => ({
       auth,
       login,
       register,
       logout,
+      updateUser,
     }),
-    [auth, login, register, logout]
+    [auth, login, register, logout, updateUser]
   );
 
   return (
