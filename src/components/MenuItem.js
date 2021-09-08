@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 
 const MenuItem = (props) => {
     
-    const { name, iconClassName, onClick, to } = props;
+    const { name, iconClassName, onClick, } = props;
     
     return (
-        <li onClick={props.onClick}>
+        <li onClick={onClick}>
       <NavLink to={name} className="menu-item">
         <span>{name}</span>
       </NavLink>

@@ -6,6 +6,9 @@
         .search{
             margin-top: 5px;
             margin-left: 600px;
+            input{
+                border-radius: 10px;
+            }
         }   
     }
     .card-container{
@@ -19,8 +22,8 @@
             position: flex;
             margin-right: 10px;
             
-            .img{
-                width: 100%;
+            img{
+                width: 100px;
             }
             .user-info {
                 padding: 2px 16px;

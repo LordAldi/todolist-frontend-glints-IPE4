@@ -1,0 +1,27 @@
+.dashboard-view{
+    margin-top: 20px;
+    
+    .card-view{
+        .card{
+            width: 18rem;
+            background-color: #4B9AFF;
+            height: 150px;
+            border-radius: 22px;
+            margin-top: 40px;
+            .card-body{
+                display: flex;
+                align-items: center;
+                .card-title{
+                    color: white;
+                    font-size: 50px;
+                    font-weight: bold;
+                }
+                .people{
+                   color: white;
+                   font-size: 40px;
+                   margin-left: 10px;
+                }
+            }
+        }   
+    }
+}

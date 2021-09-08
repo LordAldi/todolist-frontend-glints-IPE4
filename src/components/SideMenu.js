@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import MenuItem from './MenuItem';
+import { GoSignOut } from 'react-icons/go';
 
 
 
@@ -25,7 +26,7 @@ const SideMenu = (props) => {
         <div className="top-section">
             <div className="logo">
             <div className="avatar">
-                <img  variant="top" src="https://avatars.dicebear.com/api/gridy/laksono.svg" />
+                <img  variant="top" src="https://avatars.dicebear.com/api/gridy/laksono.svg" alt="avatar" />
                 <div className="user-info">
                 <h5>@Jember08</h5>
                 <p>admin</p>
@@ -56,6 +57,11 @@ const SideMenu = (props) => {
             </ul>
         </div>
         
+        <div className="footer">
+            <GoSignOut />
+            <div className="text">Log Out</div>
+        </div>
+
     </div>
     )
 };
