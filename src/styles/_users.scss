@@ -2,10 +2,10 @@
     margin-left: 20px;
     .user-btn{
         display: flex;
+        justify-content: space-between;
         padding-bottom: 20px;
         .search{
             margin-top: 5px;
-            margin-left: 600px;
             input{
                 border-radius: 10px;
             }
@@ -13,14 +13,18 @@
     }
     .card-container{
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         width: 100%;
         .card{
             transition: 0.3s;
             width: 20%;
+            min-width: 150px;
             border-radius: 20px;
             align-items: center;
             position: flex;
             margin-right: 10px;
+            margin-bottom: 10px;
             
             img{
                 width: 100px;

@@ -1,70 +1,78 @@
-import React, {useState, useEffect} from 'react';
-import MenuItem from './MenuItem';
-import { GoSignOut } from 'react-icons/go';
+import React, { useState, useEffect } from "react";
+import MenuItem from "./MenuItem";
+import { GoSignOut } from "react-icons/go";
+import { Link } from "react-router-dom";
 
-
-
-/**     
+/**
  * @author
  * @function SideMenu
-**/
+ **/
 
 const menuItems = [
-    {name: 'Dashboard', to: '/', iconClassName: 'bi bi-laptop' },
-    {name: 'Users', to: '/Users', iconClassName: 'bi bi-people' }
-]
+  { name: "Dashboard", to: "/", iconClassName: "bi bi-laptop" },
+  { name: "Users", to: "/Users", iconClassName: "bi bi-people" },
+];
 
 const SideMenu = (props) => {
-    const [inactive, setInactive] =useState(false);
+  const [inactive, setInactive] = useState(false);
 
-    useEffect(() => {
-        props.onCollapse(inactive);
-    }, [inactive]);
+  useEffect(() => {
+    props.onCollapse(inactive);
+  }, [inactive]);
 
-    return (
+  return (
     <div className={`side-menu ${inactive ? "inactive" : ""}`}>
-        <div className="top-section">
-            <div className="logo">
-            <div className="avatar">
-                <img  variant="top" src="https://avatars.dicebear.com/api/gridy/laksono.svg" alt="avatar" />
-                <div className="user-info">
-                <h5>@Jember08</h5>
-                <p>admin</p>
+      <div className="top-section">
+        <div className="logo">
+          <div className="avatar">
+            <img
+              variant="top"
+              src="https://avatars.dicebear.com/api/gridy/laksono.svg"
+              alt="avatar"
+            />
+            <div className="user-info">
+              <h5>@Jember08</h5>
+              <p>admin</p>
             </div>
-            </div>
-            </div>
-            <div onClick={() => setInactive(!inactive)} className="toggle-menu-btn">
-            {inactive ? <i class="bi bi-arrow-right-square-fill"></i> : <i class="bi bi-arrow-left-square-fill"></i>}
-            </div>
+          </div>
         </div>
-
-        <div className="divider"></div>
-
-        <div className="main-menu">
-            <ul>
-                {menuItems.map((menuItem, index) => (
-                 <MenuItem
-                 key={index}  
-                 name={menuItem.name}
-                 iconClassName={menuItem.iconClassName}
-                 onClick={()=> {
-                     if(inactive){
-                         setInactive(false);
-                     }
-                 }}
-                 />
-                ))}
-            </ul>
+        <div onClick={() => setInactive(!inactive)} className="toggle-menu-btn">
+          {inactive ? (
+            <i class="bi bi-arrow-right-square-fill"></i>
+          ) : (
+            <i class="bi bi-arrow-left-square-fill"></i>
+          )}
         </div>
-        
-        <div className="footer">
-            <GoSignOut />
-            <div className="text">Log Out</div>
-        </div>
+      </div>
 
+      <div className="divider"></div>
+
+      <div className="main-menu">
+        <ul>
+          {menuItems.map((menuItem, index) => (
+            <MenuItem
+              key={index}
+              name={menuItem.name}
+              iconClassName={menuItem.iconClassName}
+              to={menuItem.to}
+              onClick={() => {
+                if (inactive) {
+                  setInactive(false);
+                }
+              }}
+            />
+          ))}
+        </ul>
+      </div>
+
+      <div className="footer">
+        <GoSignOut />
+        <Link to="login" className="text">
+          Log Out
+        </Link>
+      </div>
     </div>
-    )
+  );
 };
 
 export default SideMenu;
-
