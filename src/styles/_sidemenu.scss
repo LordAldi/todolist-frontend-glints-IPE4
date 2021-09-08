@@ -1,3 +1,6 @@
+li{
+    list-style: none;
+}
 .side-menu {
     position: fixed;
     background: #4B9AFF;
@@ -8,25 +11,18 @@
     transition: width .2s ease-in;
     &.inactive {
         width: 80px;
-        .top-section .logo .user-info{
+        .side-menu.inactive .top-section .logo .user-info{
             opacity: 0;
         }
-        .top-section .toggle-menu-btn {
+        .side-menu.inactive .top-section .toggle-menu-btn {
             right: -50px;
-        }  
-
-        .top-section{
-            .logo{
-                .user-info{
-                    opacity: 0;
-                }
-                
-            }
-            .toggle-menu-btn{
-                right: -50px;
-            }
         }
-        
+        .side-menu.inactive .main-menu .menu-item span{
+            opacity: 0;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
     }
     .top-section{
         position: relative;
@@ -35,7 +31,7 @@
             height: 40px;
             overflow: hidden;
             display: inline-block;
-            .img{
+            img{
                 max-width: 100%;
             }
             .user-info{
@@ -45,7 +41,6 @@
                 position: absolute;
                 opacity: 1;
                 transition: opacity .2s ease-in;
-                
                 h5{
                     font-size: 15px;
                 }
@@ -53,17 +48,16 @@
                     font-size: 13px;
                 }
             }
-            .toggle-menu-btn{
-                color: #0080ff;
-                font-size: 20px;
-                position: absolute;
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
-                cursor: pointer;
-            }
-          
-      }
+        }
+        .toggle-menu-btn{
+            color: #0080ff;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
     }
     .main-menu{
         margin: 5px;
@@ -75,10 +69,12 @@
             display: block;
             font-weight: 600;
             cursor: pointer;
-            &.active{
+            padding: 10px ;
+            &.inactive{
                 background-color: blueviolet;
                 border-radius: 5px;
             }
+            
             .menu-icon{
                 display: inline-block;
                 width: 40px;
@@ -87,27 +83,17 @@
                 line-height: 40px;
                 text-align: center;
                 cursor: pointer;
-            }
-        .span{
-            position: absolute;
-            display: inline-block;
-            line-height: 40px;
-            opacity: 1;
-            transition: opacity .2s ease-in;
-            &.inactive {
-                opacity: 0;
-                width: 0;
-                height: 0;
-                overflow: hidden;
+                .span{
+                    position: absolute;
+                    display: inline-block;
+                    line-height: 40px;
+                    opacity: 1;
+                    transition: opacity .2s ease-in;
+                }
             }
         }
-      }
     }
 }
-
-
-
-
 
 .divider{
     width: 100%;
@@ -115,16 +101,3 @@
     border-radius: 1px;
     background-color: aqua;
 }
-
-
-
-
-.container{
-    margin-left: 300px;
-    transition: margin-left .2s ease-in;
-    padding: 50px;
-    &.inactive{
-        margin-left: 120px;
-    }
-}
-

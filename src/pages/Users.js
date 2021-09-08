@@ -4,16 +4,13 @@ import { Button, Card } from 'react-bootstrap';
  
 const Users = ()=> {
     return (
-        <div>
-            <div>
+        <div className="user">
+            <div className="user-head">
             <h1>Users</h1>
             </div>
-        <div>
+        <div className="user-btn">
             <Button variant="primary">Add User</Button>
-        </div>
-
-        <div>
-        <form action="/" method="get">
+            <form className="search" action="/" method="get">
             <input
                 type="text"
                 id="header-search"
@@ -24,20 +21,15 @@ const Users = ()=> {
             </form>
         </div>
 
-        <div className="group-info">
-        <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="https://avatars.dicebear.com/api/gridy/afan.svg" />
-        <Card.Body>
-        <Card.Title>User 1</Card.Title>
-        <Card.Text>
-            Super Admin
-        </Card.Text>
-        <Button variant="primary">Detail</Button>
-        </Card.Body>
-        </Card>
-            
-        </div>
 
+        <div className="card">
+        <img src="https://avatars.dicebear.com/api/gridy/afan.svg"  alt="Avatar" />
+        <div class="user-info">
+        <h4><b>User 1</b></h4> 
+        <p>Super Admin</p>
+        <Button variant="primary">Detail</Button>
+        </div>
+        </div>
         </div>
     )
 };
