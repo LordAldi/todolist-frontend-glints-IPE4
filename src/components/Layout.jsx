@@ -8,7 +8,6 @@ const Layout = (Children) => {
     <>
       <SideMenu
         onCollapse={(inactive) => {
-          console.log(inactive);
           setInactive(inactive);
         }}
       />

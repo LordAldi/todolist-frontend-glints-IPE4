@@ -3,6 +3,8 @@ import React from "react";
 import AuthLeft from "../components/AuthLeft";
 import TextField from "../components/TextField";
 import * as yup from "yup";
+import { useHistory } from "react-router-dom";
+import useAuth from "../hooks/authContext";
 
 const RegisterForm = ({ onSubmit }) => {
   return (
@@ -69,9 +71,8 @@ const validationSchema = yup.object().shape({
 });
 
 const Register = () => {
-  const onSubmit = (values) => {
-    console.log(values);
-  };
+  const { register } = useAuth();
+  const history = useHistory();
   return (
     <div className="auth-container">
       <AuthLeft
@@ -85,7 +86,7 @@ const Register = () => {
           <h1 className="title">Create an Account</h1>
           <Formik
             initialValues={initialValues}
-            onSubmit={onSubmit}
+            onSubmit={(val) => register(val, history)}
             validationSchema={validationSchema}
           >
             {({ handleSubmit }) => <RegisterForm onSubmit={handleSubmit} />}

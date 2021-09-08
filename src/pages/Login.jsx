@@ -1,18 +1,19 @@
 import { Form, Formik } from "formik";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AuthLeft from "../components/AuthLeft";
 import TextField from "../components/TextField";
+import useAuth from "../hooks/authContext";
 
 const LoginForm = ({ onSubmit }) => {
   return (
     <Form>
       <TextField
-        name="username"
-        label="Username"
-        placeholder="Username"
-        autoComplete="name"
-        type="text"
+        name="email"
+        label="Email"
+        placeholder="example@web.com"
+        autoComplete="username"
+        type="email"
       />
       <TextField
         name="password"
@@ -31,14 +32,13 @@ const LoginForm = ({ onSubmit }) => {
   );
 };
 const initialValues = {
-  username: "",
+  email: "",
   password: "",
 };
 
 const Login = () => {
-  const onSubmit = (values) => {
-    console.log(values);
-  };
+  const { login } = useAuth();
+  const history = useHistory();
   return (
     <div className="auth-container">
       <AuthLeft
@@ -50,7 +50,10 @@ const Login = () => {
       <div className="auth-right">
         <div className="form-card">
           <h1 className="title">Login</h1>
-          <Formik initialValues={initialValues} onSubmit={onSubmit}>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={(val) => login(val, history)}
+          >
             {({ handleSubmit }) => <LoginForm onSubmit={handleSubmit} />}
           </Formik>
         </div>

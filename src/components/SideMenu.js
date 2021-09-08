@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import MenuItem from "./MenuItem";
 import { GoSignOut } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import useAuth from "../hooks/authContext";
 
 /**
  * @author
@@ -15,11 +16,12 @@ const menuItems = [
 
 const SideMenu = (props) => {
   const [inactive, setInactive] = useState(false);
-
+  const { auth, logout } = useAuth();
+  const history = useHistory();
   useEffect(() => {
     props.onCollapse(inactive);
   }, [inactive]);
-
+  console.log(auth);
   return (
     <div className={`side-menu ${inactive ? "inactive" : ""}`}>
       <div className="top-section">
@@ -27,20 +29,20 @@ const SideMenu = (props) => {
           <div className="avatar">
             <img
               variant="top"
-              src="https://avatars.dicebear.com/api/gridy/laksono.svg"
+              src={`https://avatars.dicebear.com/api/gridy/${auth.nama}.svg`}
               alt="avatar"
             />
             <div className="user-info">
-              <h5>@Jember08</h5>
-              <p>admin</p>
+              <h5>{auth.nama}</h5>
+              <p>{auth.role}</p>
             </div>
           </div>
         </div>
         <div onClick={() => setInactive(!inactive)} className="toggle-menu-btn">
           {inactive ? (
-            <i class="bi bi-arrow-right-square-fill"></i>
+            <i className="bi bi-arrow-right-square-fill"></i>
           ) : (
-            <i class="bi bi-arrow-left-square-fill"></i>
+            <i className="bi bi-arrow-left-square-fill"></i>
           )}
         </div>
       </div>
@@ -67,9 +69,14 @@ const SideMenu = (props) => {
 
       <div className="footer">
         <GoSignOut />
-        <Link to="login" className="text">
+        <div
+          onClick={() => {
+            logout(history);
+          }}
+          className="text"
+        >
           Log Out
-        </Link>
+        </div>
       </div>
     </div>
   );
