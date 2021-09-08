@@ -14,9 +14,7 @@ import {
 } from 'react-router-dom';
 
 
-const Home = () => {
-  return <h1>"Tampan Dan Berani"</h1>;
-};
+
 
 
 function App() {
@@ -33,8 +31,8 @@ function App() {
       />
       <div className={`container ${inactive ? "inactive" : "" }`}>
       <Switch>
-        <Route exact path={'/'}>
-          <Home/>
+        <Route exact path={'/Dashboard'}>
+          <Dashboard/>
         </Route>
         <Route exact path={'/Dashboard'}>
           <Dashboard/>
