@@ -79,7 +79,20 @@ const Users = (props) => {
                       <b>{user.nama}</b>
                     </h4>
                     <p>{user.role}</p>
-                    <Button variant="primary">Detail</Button>
+                    <Button
+                      variant="primary"
+                      onClick={() => {
+                        setModalUser({
+                          email: user.email,
+                          username: user.nama,
+                          role: user.role,
+                          id: user.id,
+                        });
+                        toggleModal();
+                      }}
+                    >
+                      Detail
+                    </Button>
                   </div>
                 </div>
               );
