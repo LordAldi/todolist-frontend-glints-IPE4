@@ -7,6 +7,7 @@ import useModal from "../hooks/useModal";
 import Modal from "../components/Modal";
 
 const Users = (props) => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState([]);
   const [modalUsers, setModalUser] = useState({
     email: "",
@@ -46,6 +47,9 @@ const Users = (props) => {
             id="header-search"
             placeholder="Search "
             name="s"
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
           />
         </div>
       </div>
@@ -53,36 +57,33 @@ const Users = (props) => {
       <div className="card-container">
         {loading && <div>Loading...</div>}
         {users &&
-          users.map((user) => {
-            return (
-              <div className="card" key={user.id}>
-                <img
-                  src={`https://avatars.dicebear.com/api/gridy/${user.nama}.svg`}
-                  alt="Avatar"
-                />
-                <div className="user-info">
-                  <h4>
-                    <b>{user.nama}</b>
-                  </h4>
-                  <p>{user.role}</p>
-                  <Button
-                    variant="primary"
-                    onClick={() => {
-                      setModalUser({
-                        email: user.email,
-                        username: user.nama,
-                        role: user.role,
-                        id: user.id,
-                      });
-                      toggleModal();
-                    }}
-                  >
-                    Detail
-                  </Button>
+          users
+            .filter((user) => {
+              if (searchTerm === "") {
+                return user;
+              } else if (
+                user.nama.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return user;
+              }
+            })
+            .map((user) => {
+              return (
+                <div className="card">
+                  <img
+                    src={`https://avatars.dicebear.com/api/gridy/${user.nama}.svg`}
+                    alt="Avatar"
+                  />
+                  <div className="user-info">
+                    <h4>
+                      <b>{user.nama}</b>
+                    </h4>
+                    <p>{user.role}</p>
+                    <Button variant="primary">Detail</Button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
       </div>
     </div>
   );
