@@ -58,6 +58,7 @@ const Users = (props) => {
         {loading && <div>Loading...</div>}
         {users &&
           users
+            // eslint-disable-next-line array-callback-return
             .filter((user) => {
               if (searchTerm === "") {
                 return user;

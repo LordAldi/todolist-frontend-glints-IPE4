@@ -20,7 +20,7 @@ const SideMenu = (props) => {
   const history = useHistory();
   useEffect(() => {
     props.onCollapse(inactive);
-  }, [inactive]);
+  }, [inactive, props]);
   console.log(auth);
   return (
     <div className={`side-menu ${inactive ? "inactive" : ""}`}>
