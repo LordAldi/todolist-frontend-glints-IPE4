@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { useHistory } from "react-router-dom";
 import useAuth from "../hooks/authContext";
 
-const RegisterForm = ({ onSubmit }) => {
+const RegisterForm = ({ onSubmit, loading }) => {
   return (
     <Form>
       <TextField
@@ -37,9 +37,13 @@ const RegisterForm = ({ onSubmit }) => {
         placeholder="Confirm Password"
         type="password"
       />
-      <div className="button" onClick={onSubmit}>
-        Register
-      </div>
+      <button
+        className={`button ${loading && "disable"}`}
+        onClick={onSubmit}
+        disabled={loading}
+      >
+        {loading ? "Loading..." : "Register"}
+      </button>
     </Form>
   );
 };
@@ -71,7 +75,7 @@ const validationSchema = yup.object().shape({
 });
 
 const Register = () => {
-  const { register } = useAuth();
+  const { register, loading } = useAuth();
   const history = useHistory();
   return (
     <div className="auth-container">
@@ -89,7 +93,9 @@ const Register = () => {
             onSubmit={(val) => register(val, history)}
             validationSchema={validationSchema}
           >
-            {({ handleSubmit }) => <RegisterForm onSubmit={handleSubmit} />}
+            {({ handleSubmit }) => (
+              <RegisterForm loading={loading} onSubmit={handleSubmit} />
+            )}
           </Formik>
         </div>
       </div>

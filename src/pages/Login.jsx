@@ -5,7 +5,7 @@ import AuthLeft from "../components/AuthLeft";
 import TextField from "../components/TextField";
 import useAuth from "../hooks/authContext";
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, loading }) => {
   return (
     <Form>
       <TextField
@@ -25,9 +25,13 @@ const LoginForm = ({ onSubmit }) => {
       <Link to="/forget-password" className="forget">
         Forget Password?
       </Link>
-      <div className="button" onClick={onSubmit}>
-        Login
-      </div>
+      <button
+        className={`button ${loading && "disable"}`}
+        onClick={onSubmit}
+        disabled={loading}
+      >
+        {loading ? "Loading..." : "Login"}
+      </button>
     </Form>
   );
 };
@@ -37,7 +41,7 @@ const initialValues = {
 };
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, loading } = useAuth();
   const history = useHistory();
   return (
     <div className="auth-container">
@@ -54,7 +58,9 @@ const Login = () => {
             initialValues={initialValues}
             onSubmit={(val) => login(val, history)}
           >
-            {({ handleSubmit }) => <LoginForm onSubmit={handleSubmit} />}
+            {({ handleSubmit }) => (
+              <LoginForm loading={loading} onSubmit={handleSubmit} />
+            )}
           </Formik>
         </div>
       </div>

@@ -29,7 +29,9 @@ const SideMenu = (props) => {
           <div className="avatar">
             <img
               variant="top"
-              src={`https://avatars.dicebear.com/api/gridy/${auth.nama}.svg`}
+              src={`https://avatars.dicebear.com/api/gridy/${auth.nama
+                .split(" ")
+                .join("")}.svg`}
               alt="avatar"
             />
             <div className="user-info">

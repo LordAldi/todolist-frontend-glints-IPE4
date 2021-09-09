@@ -1,0 +1,28 @@
+.modal-overlay{
+    background-color: #999999;
+    height: 100vh;
+    left: 0;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 500;
+}
+
+.detail-modal{
+    display: flex;
+  justify-content: center;
+  left: 0;
+  outline: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 25%;
+  width: 100%;
+  z-index: 1000;
+  .closeBtn{
+      display: flex;
+      justify-content: flex-end;
+      cursor: pointer;
+  }
+}
