@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 
 const Users = (props) => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -36,6 +37,9 @@ const Users = (props) => {
             id="header-search"
             placeholder="Search "
             name="s"
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
           />
         </div>
       </div>
@@ -43,23 +47,33 @@ const Users = (props) => {
       <div className="card-container">
         {loading && <div>Loading...</div>}
         {users &&
-          users.map((user) => {
-            return (
-              <div className="card">
-                <img
-                  src={`https://avatars.dicebear.com/api/gridy/${user.nama}.svg`}
-                  alt="Avatar"
-                />
-                <div className="user-info">
-                  <h4>
-                    <b>{user.nama}</b>
-                  </h4>
-                  <p>{user.role}</p>
-                  <Button variant="primary">Detail</Button>
+          users
+            .filter((user) => {
+              if (searchTerm === "") {
+                return user;
+              } else if (
+                user.nama.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return user;
+              }
+            })
+            .map((user) => {
+              return (
+                <div className="card">
+                  <img
+                    src={`https://avatars.dicebear.com/api/gridy/${user.nama}.svg`}
+                    alt="Avatar"
+                  />
+                  <div className="user-info">
+                    <h4>
+                      <b>{user.nama}</b>
+                    </h4>
+                    <p>{user.role}</p>
+                    <Button variant="primary">Detail</Button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
       </div>
     </div>
   );
