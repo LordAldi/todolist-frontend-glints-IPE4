@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import useAuth from "../hooks/authContext";
 import TextField from "./TextField";
 
-const UpdateForm = ({ onSubmit }) => {
+const UpdateForm = ({ onSubmit, loading }) => {
   return (
     <Form>
       <TextField
@@ -22,16 +22,20 @@ const UpdateForm = ({ onSubmit }) => {
         autoComplete="name"
         type="text"
       />
-      <div className="button" onClick={onSubmit}>
-        Update
-      </div>
+      <button
+        className={`button ${loading && "disable"}`}
+        onClick={onSubmit}
+        disabled={loading}
+      >
+        {loading ? "Loading..." : "Update"}
+      </button>
     </Form>
   );
 };
 
 const Modal = ({ isVisible, hideModal, user }) => {
   console.log(user);
-  const { updateUser } = useAuth();
+  const { updateUser, loading } = useAuth();
   const history = useHistory();
   const initialValues = {
     email: user.email,
@@ -51,7 +55,9 @@ const Modal = ({ isVisible, hideModal, user }) => {
                 initialValues={initialValues}
                 onSubmit={(val) => updateUser(val, user.id, history)}
               >
-                {({ handleSubmit }) => <UpdateForm onSubmit={handleSubmit} />}
+                {({ handleSubmit }) => (
+                  <UpdateForm loading={loading} onSubmit={handleSubmit} />
+                )}
               </Formik>
             </div>
           </div>

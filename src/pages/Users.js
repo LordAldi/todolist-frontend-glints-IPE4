@@ -23,7 +23,7 @@ const Users = (props) => {
         method: "POST",
       });
       console.log("data", res.data);
-      setUsers(res.data);
+      res.data && setUsers(res.data);
       setLoading(false);
     };
 
@@ -40,7 +40,6 @@ const Users = (props) => {
         />
       </div>
       <div className="user-btn">
-        <Button variant="primary">Add User</Button>
         <div className="search">
           <input
             type="text"

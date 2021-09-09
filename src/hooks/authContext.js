@@ -1,6 +1,6 @@
 import { useLocalStorageState } from "ahooks";
 import axios from "axios";
-import React, { createContext, useMemo, useContext } from "react";
+import React, { createContext, useMemo, useContext, useState } from "react";
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
     nama: "",
     role: "",
   });
-
+  const [loading, setLoading] = useState(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const login = async (values, history) => {
     const formData = new FormData();
@@ -17,6 +17,7 @@ export function AuthProvider({ children }) {
     formData.append("password", values.password);
     formData.append("role", "admin");
     try {
+      setLoading(true);
       const res = await axios({
         url: "https://stooping-layers.000webhostapp.com/login.php",
         data: formData,
@@ -29,9 +30,13 @@ export function AuthProvider({ children }) {
           email: res.data.email,
           nama: res.data.nama,
           role: res.data.role,
+          id: res.data.id,
         });
+        setLoading(false);
+
         history.push("/");
       }
+      setLoading(false);
       console.log(res.data);
       console.log(auth);
     } catch (error) {
@@ -48,6 +53,7 @@ export function AuthProvider({ children }) {
     formData.append("role", "admin");
     console.log("register");
     try {
+      setLoading(true);
       const res = await axios({
         url: "https://stooping-layers.000webhostapp.com/register.php",
         data: formData,
@@ -56,8 +62,11 @@ export function AuthProvider({ children }) {
       });
       if (res.data.status) {
         console.log("status oke");
+        setLoading(false);
         history.push("/login");
       }
+      setLoading(false);
+
       console.log(res.data);
       console.log(auth);
     } catch (error) {
@@ -78,6 +87,8 @@ export function AuthProvider({ children }) {
     formData.append("nama", values.username);
     console.log("id", id);
     try {
+      setLoading(true);
+
       const res = await axios({
         url: "https://stooping-layers.000webhostapp.com/updateadmin.php",
         data: formData,
@@ -86,9 +97,12 @@ export function AuthProvider({ children }) {
       });
       if (res.data.status) {
         console.log("status oke");
+        setLoading(false);
         history.push("/users");
         window.location.reload();
       }
+      setLoading(false);
+
       console.log(res.data);
       console.log(auth);
     } catch (error) {
@@ -102,8 +116,9 @@ export function AuthProvider({ children }) {
       register,
       logout,
       updateUser,
+      loading,
     }),
-    [auth, login, register, logout, updateUser]
+    [auth, login, register, logout, updateUser, loading]
   );
 
   return (
