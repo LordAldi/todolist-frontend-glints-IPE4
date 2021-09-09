@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const MenuItem = (props) => {
-  const { name, iconClassName, onClick, to } = props;
+  const { name, onClick, to } = props;
 
   return (
     <li onClick={onClick}>
